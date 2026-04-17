@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OIMatrix - OIM Arithmetix</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <section id="page-start" class="active">
+        <div id="oim-ftui-logo-small"></div>
+
+        <div class="logo-container">
+            <div id="main-logo-image"></div>
+            <p class="subtitle">MULTIVERSE COMBAT : ARITHMETIX</p>
+            <button class="blue-btn" onclick="showPage('page-rules')">START</button>
+        </div>
+    </section>
+
+    <section id="page-rules">
+        <div class="frame-silver">
+            <h1 class="gold-text">ATURAN MAIN</h1>
+            <div class="rules-text">
+                <p>1. Lo bakal dikasih satu <strong>ANGKA TARGET</strong>.</p>
+                <p>2. Misi lo: Buat persamaan matematika yang hasilnya sama dengan target.</p>
+                <p>3. <strong>WAJIB</strong> menggunakan semua angka dari 1 sampai 10, masing-masing tepat SATU KALI.</p>
+                <p>4. Operator (+, -, *, /, ^, kurung) boleh dipakai bebas.</p>
+                <p>5. Waktu ronde akan terus bertambah. Gagal = GAME OVER.</p>
+            </div>
+            <button class="blue-btn mt-20" onclick="showPage('page-nama')">LANJUT</button>
+        </div>
+    </section>
+
+    <section id="page-nama">
+        <div class="frame-silver">
+            <h2 class="yellow-text">REGISTRASI TIM</h2>
+            <p style="color: #ccc; margin-bottom: 20px;">Masukkan nama tim kamu untuk masuk ke arena.</p>
+            <input type="text" id="teamNameInput" placeholder="Ketik nama tim di sini..." autocomplete="off">
+            <br>
+            <button class="blue-btn mt-20" onclick="saveNameAndStart()">ENTER MULTIVERSE</button>
+        </div>
+    </section>
+
+    <section id="page-game">
+        <div class="frame-silver game-container-wide">
+            <div class="game-header">
+                <div id="level-indicator">Round: <span class="gold-text" id="lvl-text">1</span></div>
+                <div id="timerDisplay" class="timer-red">03:00</div>
+            </div>
+
+            <div class="target-box">
+                <h3>TARGET PENGHANCURAN:</h3>
+                <h1 id="target-number" class="neon-text">0</h1>
+            </div>
+
+            <div class="equation-screen">
+                <div id="equation-display"></div>
+                <div id="equation-result" class="live-result">= ?</div>
+            </div>
+
+            <p id="feedback-msg" class="feedback-msg"></p>
+
+            <div class="keyboard-area">
+                <div id="number-pad" class="num-pad">
+                    </div>
+
+                <div class="operator-pad">
+                    <button class="op-btn" onclick="addOperator('+')">+</button>
+                    <button class="op-btn" onclick="addOperator('-')">-</button>
+                    <button class="op-btn" onclick="addOperator('*')">×</button>
+                    <button class="op-btn" onclick="addOperator('/')">÷</button>
+                    <button class="op-btn" onclick="addOperator('^')">^</button>
+                    <button class="op-btn" onclick="addOperator('(')">(</button>
+                    <button class="op-btn" onclick="addOperator(')')">)</button>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="clear-btn" onclick="backspace()">⌫ DELETE</button>
+                <button class="clear-btn" onclick="clearEquation()">🗑️ CLEAR ALL</button>
+                <button class="submit-btn-big" onclick="submitEquation()">SUBMIT ATTACK</button>
+            </div>
+            
+            <button class="stop-btn mt-20" onclick="endGame('Menyerah')" style="width: 100%; margin-top: 20px;">🛑 SURRENDER</button>
+
+        </div>
+    </section>
+
+    <section id="page-gameover">
+        <div class="frame-silver">
+            <h1 style="color: #e74c3c; font-size: 3rem; margin: 0; letter-spacing: 2px;">COMBAT ENDED</h1>
+            <h2 class="yellow-text mt-20" style="font-size: 2rem;" id="final-team-name">TIM MISTERIUS</h2>
+            
+            <div class="final-stats">
+                <p style="font-size: 1.2rem; margin: 5px;">Status: <strong id="gameover-reason" style="color: #e74c3c;">Waktu Habis</strong></p>
+                <p style="font-size: 1.2rem; margin: 5px;">Bertahan Hingga Round: <strong class="gold-text" id="final-level">0</strong></p>
+                <p style="font-size: 1.5rem; margin: 15px 0 5px 0;">TOTAL SCORE</p>
+                <h1 class="gold-text" style="font-size: 3.5rem; margin: 0;" id="final-score">0</h1>
+            </div>
+
+            <button class="blue-btn mt-20" onclick="location.reload()">MAIN LAGI</button>
+        </div>
+    </section>
+
+    <div id="success-modal" class="modal hidden">
+        <div class="modal-content-small">
+            <h1 class="gold-text">TARGET DESTROYED!</h1>
+            <p>Persamaan lo valid dan akurat.</p>
+            <button class="blue-btn mt-20" onclick="nextRound()">NEXT ROUND 🚀</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

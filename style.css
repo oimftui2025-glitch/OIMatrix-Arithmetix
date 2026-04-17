@@ -1,0 +1,92 @@
+:root {
+    --bg-dark: #050505;
+    --gold: linear-gradient(to bottom, #fff7ad, #b8951e);
+    --gold-solid: #f1c40f;
+    --silver: #bdc3c7;
+    --blue: #0288d1;
+    --neon-blue: #00e5ff;
+    --neon-red: #ff1744;
+}
+
+body {
+    background-color: var(--bg-dark); color: white; font-family: 'Courier New', Courier, monospace;
+    margin: 0; display: flex; justify-content: center; align-items: center;
+    min-height: 100vh; overflow-x: hidden; user-select: none;
+}
+
+section { display: none; width: 100%; text-align: center; }
+section.active { display: block; }
+
+/* --- LOGO STYLING --- */
+#oim-ftui-logo-small {
+    position: fixed; top: 20px; left: 30px; width: 60px; height: 60px;
+    background-image: url('./assets/LOGO_OIM.png'); /* Logo OIM */
+    background-size: contain; background-repeat: no-repeat; background-position: center;
+    border-radius: 8px; z-index: 1000; 
+}
+
+#main-logo-image {
+    width: 550px; height: 200px; margin: 0 auto 20px auto; 
+    background-image: url('./assets/LOGO_OIMatrix.png'); /* Pake LOGO OIMaths atau bikin baru LOGO_OIMArithmetix.png */
+    background-size: contain; background-repeat: no-repeat; background-position: center;
+}
+/* --------------------- */
+
+.title-big { font-size: 4rem; margin-bottom: 5px; letter-spacing: 5px; }
+.subtitle { font-size: 1.2rem; color: var(--silver); letter-spacing: 2px; margin-bottom: 40px; font-family: 'Segoe UI', sans-serif;}
+
+.frame-silver {
+    border: 4px solid var(--neon-blue); border-radius: 15px; padding: 30px;
+    background: radial-gradient(circle, #0a192f 0%, #020813 100%);
+    max-width: 600px; margin: auto; box-shadow: 0 0 30px rgba(0, 229, 255, 0.2);
+}
+
+.game-container-wide { max-width: 750px !important; }
+
+.gold-text { background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold; }
+.yellow-text { color: var(--gold-solid); }
+.neon-text { color: var(--neon-blue); text-shadow: 0 0 10px var(--neon-blue); font-size: 4rem; margin: 0; }
+.timer-red { color: var(--neon-red); text-shadow: 0 0 10px var(--neon-red); font-size: 2rem; font-weight: bold;}
+.rules-text { text-align: left; line-height: 1.8; color: #ccc; font-size: 1.1rem; margin: 20px 0; font-family: 'Segoe UI', Tahoma, sans-serif;}
+.mt-20 { margin-top: 20px; }
+
+/* Tombol & Input */
+input[type="text"] { width: 80%; padding: 15px; font-size: 1.2rem; text-align: center; border-radius: 8px; border: 2px solid var(--neon-blue); background: #112240; color: white; outline: none; font-family: 'Segoe UI', sans-serif;}
+input[type="text"]:focus { border-color: var(--gold-solid); box-shadow: 0 0 10px var(--gold-solid);}
+
+.blue-btn { background: var(--blue); color: white; padding: 12px 35px; border-radius: 8px; border: 2px solid var(--neon-blue); cursor: pointer; font-weight: bold; font-size: 1.1rem; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; font-family: 'Segoe UI', sans-serif;}
+.blue-btn:hover { background: var(--neon-blue); color: black; box-shadow: 0 0 15px var(--neon-blue); }
+.stop-btn { background: #e74c3c; color: white; border: none; padding: 15px; border-radius: 5px; cursor: pointer; font-weight: bold; font-family: 'Segoe UI', sans-serif; font-size: 1.1rem;}
+.clear-btn { background: #555; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; font-family: 'Segoe UI', sans-serif;}
+.submit-btn-big { background: var(--gold-solid); color: black; border: none; padding: 10px 30px; border-radius: 5px; cursor: pointer; font-weight: bold; font-family: 'Segoe UI', sans-serif; font-size: 1.2rem; transition: 0.2s;}
+.submit-btn-big:hover { background: white; }
+
+/* Area Game */
+.game-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 20px; font-family: 'Segoe UI', sans-serif; font-weight: bold; font-size: 1.5rem;}
+.target-box { background: rgba(0, 229, 255, 0.1); border: 1px solid var(--neon-blue); padding: 15px; border-radius: 10px; margin-bottom: 20px;}
+.target-box h3 { margin: 0 0 10px 0; color: #ccc; font-family: 'Segoe UI', sans-serif; font-size: 1rem;}
+
+/* Layar Rumus */
+.equation-screen { background: #000; border: 2px solid #555; border-radius: 10px; padding: 15px; margin-bottom: 20px; min-height: 80px; text-align: left; position: relative;}
+#equation-display { font-size: 1.5rem; letter-spacing: 2px; color: white; word-wrap: break-word;}
+.live-result { position: absolute; bottom: 10px; right: 15px; font-size: 1.5rem; color: #888; font-weight: bold;}
+
+/* Keyboard Angka & Operator */
+.keyboard-area { margin-bottom: 20px;}
+.num-pad { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 15px;}
+.num-btn { background: #112240; color: white; border: 2px solid var(--silver); width: 50px; height: 50px; border-radius: 8px; font-size: 1.5rem; font-weight: bold; cursor: pointer; transition: 0.2s;}
+.num-btn:hover { border-color: var(--neon-blue); background: #1a365d; }
+.num-btn.used { opacity: 0.2; pointer-events: none; border-color: #333; } /* Kalo udah dipake, mati */
+
+.operator-pad { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;}
+.op-btn { background: #2c3e50; color: var(--gold-solid); border: 1px solid #555; padding: 10px 20px; border-radius: 5px; font-size: 1.5rem; font-weight: bold; cursor: pointer; transition: 0.2s;}
+.op-btn:hover { background: #34495e; color: white;}
+.action-buttons { display: flex; justify-content: center; gap: 10px; }
+
+.feedback-msg { color: #e74c3c; font-weight: bold; margin-bottom: 15px; min-height: 20px; font-family: 'Segoe UI', sans-serif;}
+.final-stats { background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid var(--neon-blue);}
+
+/* Modal Khusus Arithmetix */
+.modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 100; display: flex; justify-content: center; align-items: center; }
+.hidden { display: none !important; }
+.modal-content-small { background: #0a192f; padding: 30px; border-radius: 15px; border: 2px solid var(--gold-solid); text-align: center; font-family: 'Segoe UI', sans-serif;}
