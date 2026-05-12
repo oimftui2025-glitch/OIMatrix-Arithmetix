@@ -26,7 +26,7 @@
                 <p>2. Misi lo: Buat persamaan matematika yang hasilnya sama dengan target.</p>
                 <p>3. <strong>WAJIB</strong> menggunakan semua angka dari 1 sampai 10, masing-masing tepat SATU KALI.</p>
                 <p>4. Operator (+, -, *, /, ^, kurung) boleh dipakai bebas.</p>
-                <p>5. Waktu ronde akan terus bertambah. Gagal = GAME OVER.</p>
+                <p>5. Waktu SESI TOTAL adalah <strong>10 MENIT</strong>. Gagal atau waktu habis = GAME OVER.</p>
             </div>
             <button class="blue-btn mt-20" onclick="showPage('page-nama')">LANJUT</button>
         </div>
@@ -47,6 +47,11 @@
             <div class="game-header">
                 <div id="level-indicator">Round: <span class="gold-text" id="lvl-text">1</span></div>
                 <div id="timerDisplay" class="timer-red">03:00</div>
+            </div>
+
+            <div class="global-timer-area">
+                <span style="font-size: 0.8rem; color: #aaa;">SISA WAKTU SESI TOTAL:</span><br>
+                <span id="globalTimerDisplay" class="yellow-text" style="font-size: 1.8rem; font-family: 'Courier New', monospace; font-weight: bold;">10:00</span>
             </div>
 
             <div class="target-box">
