@@ -2,9 +2,12 @@ let currentRound = 1;
 let currentTarget = 0;
 let equationArr = []; // Nyimpen token ['10', '+', '5', '*', '...']
 let usedNumbers = []; // Nyimpen id angka yang udah diklik
-let gameTimer;
 let totalScore = 0;
 let teamName = "Tim Misterius";
+
+let gameTimer; // Timer ronde
+let globalTimerInterval; // Timer total 10 menit
+let totalTime = 600; // 10 menit dalam detik
 
 // Navigasi
 function showPage(pageId) {
@@ -20,9 +23,29 @@ function saveNameAndStart() {
     teamName = input;
     currentRound = 1;
     totalScore = 0;
+    totalTime = 600; // Reset timer ke 10 menit
     
+    startGlobalTimer(); // Mulai timer besar
     startRound();
     showPage('page-game');
+}
+
+// --- GLOBAL TIMER 10 MENIT ---
+function startGlobalTimer() {
+    clearInterval(globalTimerInterval);
+    const display = document.getElementById('globalTimerDisplay');
+    
+    display.innerText = formatTime(totalTime);
+    
+    globalTimerInterval = setInterval(() => {
+        totalTime--;
+        display.innerText = formatTime(totalTime);
+        
+        if(totalTime <= 0) {
+            clearInterval(globalTimerInterval);
+            endGame("Waktu Sesi Habis (10 Menit)!");
+        }
+    }, 1000);
 }
 
 // 2. GENERATE ROUND (Target makin susah, Timer diatur berdasar ronde)
@@ -133,19 +156,15 @@ function updateEquationDisplay() {
 // 5. PARSER & CALCULATOR (Biar ^ ngitung Pangkat beneran)
 function calculateSafe(tokens) {
     if(tokens.length === 0) return NaN;
-    // Gabungin array jadi string rumus, contoh: "10 * 5 ^ 2"
     let expr = tokens.join(' ');
     
-    // Ubah simbol ^ jadi fungsi Math.pow lewat format yang dimengerti math parser sederhana
-    // Di sini kita pake trick convert ke operator JS: **
     let jsExpr = expr.replace(/\^/g, '**'); 
     
     try {
-        // Warning: Function constructor dipake buat eval hitungan math dasar
         let result = new Function(`return ${jsExpr}`)();
         return result;
     } catch (e) {
-        return NaN; // Kalau rumusnya ga logis (misal '10 + * 2')
+        return NaN; 
     }
 }
 
@@ -167,11 +186,10 @@ function submitEquation() {
         return;
     }
 
-    // Karena operasi bagi bisa ngasilin desimal, kita buletin/toleransi dikit (biar ga error 0.9999)
     if(Math.abs(result - currentTarget) < 0.0001) {
         // VALID! TARGET HANCUR!
-        clearInterval(gameTimer);
-        let roundScore = 1000 + (currentRound * 500); // Base score + bonus ronde
+        clearInterval(gameTimer); // Berhentiin timer ronde aja, global timer lanjut jalan
+        let roundScore = 1000 + (currentRound * 500); 
         totalScore += roundScore;
         
         document.getElementById('success-modal').classList.remove('hidden');
@@ -189,6 +207,8 @@ function nextRound() {
 
 function endGame(reason) {
     clearInterval(gameTimer);
+    clearInterval(globalTimerInterval); // Pastiin timer 10 menit mati pas Game Over
+    
     document.getElementById('final-team-name').innerText = teamName;
     document.getElementById('final-level').innerText = currentRound;
     document.getElementById('final-score').innerText = totalScore;
@@ -209,7 +229,7 @@ function runTimer(seconds) {
         display.innerText = formatTime(time);
         
         if(time <= 0) {
-            endGame("Waktu Habis (Time's Up!)");
+            endGame("Waktu Ronde Habis (Time's Up!)");
         }
     }, 1000);
 }
