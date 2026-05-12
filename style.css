@@ -62,7 +62,17 @@ input[type="text"]:focus { border-color: var(--gold-solid); box-shadow: 0 0 10px
 .submit-btn-big:hover { background: white; }
 
 /* Area Game */
-.game-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 20px; font-family: 'Segoe UI', sans-serif; font-weight: bold; font-size: 1.5rem;}
+.game-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 15px; font-family: 'Segoe UI', sans-serif; font-weight: bold; font-size: 1.5rem;}
+
+/* Global Timer Display Style */
+.global-timer-area {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
 .target-box { background: rgba(0, 229, 255, 0.1); border: 1px solid var(--neon-blue); padding: 15px; border-radius: 10px; margin-bottom: 20px;}
 .target-box h3 { margin: 0 0 10px 0; color: #ccc; font-family: 'Segoe UI', sans-serif; font-size: 1rem;}
 
@@ -76,7 +86,7 @@ input[type="text"]:focus { border-color: var(--gold-solid); box-shadow: 0 0 10px
 .num-pad { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 15px;}
 .num-btn { background: #112240; color: white; border: 2px solid var(--silver); width: 50px; height: 50px; border-radius: 8px; font-size: 1.5rem; font-weight: bold; cursor: pointer; transition: 0.2s;}
 .num-btn:hover { border-color: var(--neon-blue); background: #1a365d; }
-.num-btn.used { opacity: 0.2; pointer-events: none; border-color: #333; } /* Kalo udah dipake, mati */
+.num-btn.used { opacity: 0.2; pointer-events: none; border-color: #333; }
 
 .operator-pad { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;}
 .op-btn { background: #2c3e50; color: var(--gold-solid); border: 1px solid #555; padding: 10px 20px; border-radius: 5px; font-size: 1.5rem; font-weight: bold; cursor: pointer; transition: 0.2s;}
